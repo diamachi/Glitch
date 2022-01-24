@@ -1,10 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import {motion} from "framer-motion";
+import { useDispatch } from "react-redux";
+import { loadDetail } from "../actions/detailAction";
 
-function Game({name,released,image}) {
+function Game({name,released,image,id,pk}) {
+
+  const dispatch = useDispatch();
+  const loadDetailHandler = () => {
+    dispatch(loadDetail(id));
+    dispatch(loadDetail(pk));
+  };
+
   return (
-  <StyledGame>
+  <StyledGame onClick={loadDetailHandler}>
       <h3>{name}</h3>
       <p>{released}</p>
       <img src={image} alt={name}/>
